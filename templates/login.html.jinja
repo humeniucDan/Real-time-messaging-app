@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ variable|escape }}</title>
+</head>
+
+<body>
+  <h1>Login</h1>
+
+  <form action="{{ loginUrl }}" method='POST'>
+    <input type="text" id="user" name="user"/>
+    <input type="text" id="pass" name="pass"/>
+    
+    <input type="submit" id="login" name="login"
+      value="Log in"
+    />
+  </form>
+</body>
+
+</html>

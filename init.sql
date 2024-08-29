@@ -8,16 +8,17 @@ CREATE SCHEMA p1;
 -- Table structure for table User in schema p1
 CREATE TABLE p1.User (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL -- Added password column
 );
 
 -- Data for table User in schema p1
-INSERT INTO p1.User (id, name) VALUES
-(1, 'Alice'),
-(2, 'Bob'),
-(3, 'Charlie'),
-(4, 'David'),
-(5, 'Eve');
+INSERT INTO p1.User (id, name, password) VALUES
+(1, 'Alice', 'password123'), 
+(2, 'Bob', 'securepass456'), 
+(3, 'Charlie', 'charlie789'),
+(4, 'David', 'david101112'), 
+(5, 'Eve', 'eve131415'); 
 
 -- Table structure for table Messages in schema p1
 CREATE TABLE p1.Messages (

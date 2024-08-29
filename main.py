@@ -6,8 +6,21 @@ main = Flask(__name__)
 
 
 @main.route('/')
-def page():
-    return '<h1>Woorks</h1>'
+def loginPage():
+    return loginPageBuilder()
+@main.route('/loginValidator')
+def loginValiadtorPage():
+    return loginPageBuilder()
+
+@main.route('/signUp')
+def signupPage():
+    return signupPageBuilder()
+@main.route('/signUpValidator')
+def signupValiadtorPage():
+
+    
+
+    return redirect(url_for('signupPage'))
 
 @main.route('/test')
 def testPage():

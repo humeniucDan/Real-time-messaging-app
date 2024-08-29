@@ -6,6 +6,41 @@ with open(FILE_PATH, 'r') as file:
     conn_params = json.load(file)
 print(conn_params)
 
+def loginUser(user, password):
+    print("STARTED")
+    try:
+        # date = str(date)
+
+        dbCon = psycopg2.connect(**conn_params)
+        if dbCon == None:
+            print('Could not connect to DataBase')
+            return -1
+        cursor = dbCon.cursor()
+
+        query = ''' 
+                select * from p1.user
+                where
+                name = %s and password = %s;
+                '''
+
+        cursor.execute(query, user, password)
+        result = cursor.fetchall()
+
+
+        print(len(result))
+
+        return len(result)
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(f"Error: {error}")
+
+    finally:
+        if dbCon is not None:
+            cursor.close()
+            dbCon.close()
+            print("ENDED")
+
+
 def insertNewMessage(senderId, recieverId, date, content):
     print("STARTED")
     try:
@@ -17,29 +52,29 @@ def insertNewMessage(senderId, recieverId, date, content):
             return -1
         cursor = dbCon.cursor()
 
-        query = ''' SELECT 
-                        senderId, 
-                        receiverId, 
-                        date, 
-                        content
-                    FROM 
-                        p1.Messages
-                    WHERE 
-                        senderId = %s
-                    ORDER BY 
-                        date DESC
-                    LIMIT 1;
-                '''
+        # query = ''' SELECT 
+        #                 senderId, 
+        #                 receiverId, 
+        #                 date, 
+        #                 content
+        #             FROM 
+        #                 p1.Messages
+        #             WHERE 
+        #                 senderId = %s
+        #             ORDER BY 
+        #                 date DESC
+        #             LIMIT 1;
+        #         '''
 
-        cursor.execute(query, senderId)
-        result = cursor.fetchall()
+        # cursor.execute(query, senderId)
+        # result = cursor.fetchall()
 
-        # print(result[0][3] + ' ' + content)
+        # # print(result[0][3] + ' ' + content)
 
-        print(len(result))
+        # print(len(result))
 
-        if len(result) != 0 and result[0][3] == content: 
-            return
+        # if len(result) != 0 and result[0][3] == content: 
+        #     return
 
         query = '''
             INSERT INTO p1.Messages (senderId, receiverId, date, content)
