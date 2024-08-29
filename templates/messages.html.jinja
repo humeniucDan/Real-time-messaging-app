@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ variable|escape }}</title>
+</head>
+
+<body>
+  <h1>{{friend[1]}}</h1>
+
+  {% if item_list is defined and item_list|length > 0 %} 
+    {%- for item in item_list %}
+
+      {% if item[0] == friend[0] %} 
+        Recieved:
+      {% else %} 
+        Sent:
+      {% endif %}
+
+      {{ item[2] }}
+      <br>
+
+      {{ item[3] }} 
+      <br><br>
+
+    {%- endfor %}
+  {% endif %}
+
+  <form action="{{ postUrl }}" method='POST'>
+    <input type="text" id="newMessage" name="newMessage"/>
+    <input type="submit" id="sendMessage" name="sendMessage"
+      value="Send!"
+    />
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ variable|escape }}</title>
+</head>
+
+<body>
+  <h1>Friends</h1>
+  {%- for item in item_list %}
+    <a href="{{ url_for('messagePage', user1Id=mainUserId, user2Id=item[0]) }}">
+      {{ item[1] }} <br>
+    </a>
+  {%- endfor %}
+</body>
+
+</html> 
